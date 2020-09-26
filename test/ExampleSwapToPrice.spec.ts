@@ -15,9 +15,11 @@ const overrides = {
   gasLimit: 9999999
 }
 
+const HARDFORK = 'petersburg'
+
 describe('ExampleSwapToPrice', () => {
   const provider = new MockProvider({
-    hardfork: 'istanbul',
+    hardfork: HARDFORK,
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
     gasLimit: 9999999
   })
@@ -192,7 +194,13 @@ describe('ExampleSwapToPrice', () => {
         overrides
       )
       const receipt = await tx.wait()
-      expect(receipt.gasUsed).to.eq('122329')
+      if (HARDFORK === 'petersburg') {
+        expect(receipt.gasUsed).to.eq('144553')
+      } else {
+        // istanbul
+        expect(receipt.gasUsed).to.eq('122329')
+      }
+
     }).retries(2) // gas test is inconsistent
   })
 })

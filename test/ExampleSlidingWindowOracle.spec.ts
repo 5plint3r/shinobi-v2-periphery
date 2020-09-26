@@ -17,9 +17,11 @@ const overrides = {
 const defaultToken0Amount = expandTo18Decimals(5)
 const defaultToken1Amount = expandTo18Decimals(10)
 
+const HARDFORK = 'petersburg'
+
 describe('ExampleSlidingWindowOracle', () => {
   const provider = new MockProvider({
-    hardfork: 'istanbul',
+    hardfork: HARDFORK,
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
     gasLimit: 9999999
   })
@@ -150,14 +152,24 @@ describe('ExampleSlidingWindowOracle', () => {
     it('gas for first update (allocates empty array)', async () => {
       const tx = await slidingWindowOracle.update(token0.address, token1.address, overrides)
       const receipt = await tx.wait()
-      expect(receipt.gasUsed).to.eq('116816')
+      if (HARDFORK === 'petersburg') {
+        expect(receipt.gasUsed).to.eq('206104')
+      } else {
+        // istanbul
+        expect(receipt.gasUsed).to.eq('116816')
+      }
     }).retries(2) // gas test inconsistent
 
     it('gas for second update in the same period (skips)', async () => {
       await slidingWindowOracle.update(token0.address, token1.address, overrides)
       const tx = await slidingWindowOracle.update(token0.address, token1.address, overrides)
       const receipt = await tx.wait()
-      expect(receipt.gasUsed).to.eq('25574')
+      if (HARDFORK === 'petersburg') {
+        expect(receipt.gasUsed).to.eq('26062')
+      } else {
+        // istanbul
+        expect(receipt.gasUsed).to.eq('25574')
+      }
     }).retries(2) // gas test inconsistent
 
     it('gas for second update different period (no allocate, no skip)', async () => {
@@ -165,7 +177,12 @@ describe('ExampleSlidingWindowOracle', () => {
       await mineBlock(provider, startTime + 3600)
       const tx = await slidingWindowOracle.update(token0.address, token1.address, overrides)
       const receipt = await tx.wait()
-      expect(receipt.gasUsed).to.eq('94542')
+      if (HARDFORK === 'petersburg') {
+        expect(receipt.gasUsed).to.eq('93230')
+      } else {
+        // istanbul
+        expect(receipt.gasUsed).to.eq('94542')
+      }
     }).retries(2) // gas test inconsistent
 
     it('second update in one timeslot does not overwrite', async () => {

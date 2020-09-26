@@ -3,7 +3,7 @@ import { solidity, MockProvider, createFixtureLoader, deployContract } from 'eth
 import { Contract } from 'ethers'
 import { BigNumber, bigNumberify } from 'ethers/utils'
 import { MaxUint256 } from 'ethers/constants'
-import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
+import IUniswapV2Pair from 'shinobi-v2-core/build/IUniswapV2Pair.json'
 
 import { v2Fixture } from './shared/fixtures'
 import { expandTo18Decimals, getApprovalDigest, MINIMUM_LIQUIDITY } from './shared/utilities'
@@ -19,7 +19,7 @@ const overrides = {
 
 describe('UniswapV2Router02', () => {
   const provider = new MockProvider({
-    hardfork: 'istanbul',
+    hardfork: 'petersburg',
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
     gasLimit: 9999999
   })
@@ -123,7 +123,7 @@ describe('UniswapV2Router02', () => {
 
 describe('fee-on-transfer tokens', () => {
   const provider = new MockProvider({
-    hardfork: 'istanbul',
+    hardfork: 'petersburg',
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
     gasLimit: 9999999
   })
@@ -310,7 +310,7 @@ describe('fee-on-transfer tokens', () => {
 
 describe('fee-on-transfer tokens: reloaded', () => {
   const provider = new MockProvider({
-    hardfork: 'istanbul',
+    hardfork: 'petersburg',
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
     gasLimit: 9999999
   })

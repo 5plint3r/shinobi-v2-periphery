@@ -138,10 +138,6 @@
   resolved "https://registry.yarnpkg.com/@uniswap/lib/-/lib-1.1.1.tgz#0afd29601846c16e5d082866cbb24a9e0758e6bc"
   integrity sha512-2yK7sLpKIT91TiS5sewHtOa7YuM8IuBXVl4GZv2jZFys4D2sY7K5vZh6MqD25TPA95Od+0YzCVq6cTF2IKrOmg==
 
-"@uniswap/v2-core@5plint3r/shinobi-v2-core.git#master":
-  version "1.0.1"
-  resolved "https://codeload.github.com/5plint3r/shinobi-v2-core/tar.gz/876f1c7f4b186fb52d9787000e6f9c6c1ecb2158"
-
 "@web3-js/scrypt-shim@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@web3-js/scrypt-shim/-/scrypt-shim-0.1.0.tgz#0bf7529ab6788311d3e07586f7d89107c3bea2cc"
@@ -5805,6 +5801,11 @@ sha3@^1.2.2:
   integrity sha512-KgLGmJGrmNB4JWVsAV11Yk6KbvsAiygWJc7t5IebWva/0NukNrjJqhtKhzy3Eiv2AKuGvhZZt7dt1mDo7HkoiQ==
   dependencies:
     nan "2.13.2"
+
+shinobi-v2-core@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/shinobi-v2-core/-/shinobi-v2-core-1.0.1.tgz#584c020c8962e006adeebc78f2211aa2cbec5d3b"
+  integrity sha512-xQOkMekw51Z9ASTqNrNuT6OfkkmjbuBur+l1oB8YqR6vxaa71IDU6Oap8NJUFbhL3InH54E5Wdwzt8UwJaY7Fg==
 
 simple-concat@^1.0.0:
   version "1.0.0"
